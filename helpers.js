@@ -1,19 +1,23 @@
 //Helper functions
+const ExpressError = require("./expressError");
 
 class Helper {
-
+    // constructor(queryString){
+    //     const stringArr = qString.split(",")
+    //     this.numsArr = stringArr.map((val) => Number(val))
+    // }
     //The mean is the most commonly used measure of average. To calculate the mean, add the values together and divide the total by the number of values.
-    static mean(qString) {
-        const arr = qString.split(",");
-        let sum = arr.reduce((val, acc) => Number(val) + Number(acc));
-        return sum / arr.length;
+    static mean(numsArr) {
+        let sum = numsArr.reduce((val, acc) => val + acc);
+        console.log(sum / numsArr.length, numsArr);
+        return sum / numsArr.length;
     }
 
     //If you place a set of numbers in order, the median number is the middle one. If there are two middle numbers, the median is the mean of those two numbers.
     static median(qString) {
         const arr = qString.split(",");
         arr = arr.map((val) => Number(val));
-        arr.sort((a, b) = a - b);
+        arr.sort((a, b) => a - b);
         let midIndex = arr.length / 2;
         let left, right;
         if (Number.isInteger(midIndex)) {
@@ -55,5 +59,18 @@ class Helper {
         }
         return resultsArray;
     }
+    static checkIfAllNums(qStringNums) {
+        const stringsArr = qStringNums.split(",");
+        // const numsArr = stringsArr.map((val) => parseInt(val));
+        const numsArr = [];
+        for (let numStr of stringsArr) {
+            if (Number.isNaN(parseInt(numStr))) {
+                throw new ExpressError(`${numStr} is not a number`, 400);
+            } else {
+                numsArr.push(parseInt(numStr));
+            }
+        }
+        return numsArr;
+    }
 }
-module.exports = Helper
+module.exports = Helper;
