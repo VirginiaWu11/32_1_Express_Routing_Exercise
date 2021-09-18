@@ -27,20 +27,37 @@ function median(qString) {
 }
 
 function mode(qString) {
-    let arr = qString.split(",");
-    let newMap = new Map();
-    let mostFreq = "";
-    let max = 0;
+    const arr = qString.split(",");
+    const newMap = new Map();
+    const resultsArray = [];
+    // let mostFreq = "";
+    let maxCount = 0;
     for (let numStr of arr) {
         if (newMap.has(numStr)) {
             newMap.set(numStr, newMap.get(numStr) + 1);
         } else {
             newMap.set(numStr, 1);
         }
-        if (newMap.get(numStr) > max) {
-            max = newMap.get(numStr);
-            mostFreq = numStr;
+        if (newMap.get(numStr) > maxCount) {
+            maxCount = newMap.get(numStr);
+            // mostFreq = numStr;
         }
     }
-    console.log(Number(mostFreq));
+    const valuesArray = [...newMap.values()];
+    if (valuesArray.every((val) => val === maxCount)) {
+        return 0;
+    }
+
+    for (let [key, value] of newMap) {
+        if (value === maxCount) {
+            resultsArray.push(key);
+        }
+    }
+    console.log(resultsArray);
 }
+
+// first check what the max is count
+// then check if all values = the max
+// if not, then return all keys which have the max
+
+// update const for arrays and maps
