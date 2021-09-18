@@ -7,20 +7,22 @@ const app = express();
 function mean(qString) {
     const arr = qString.split(",");
     let sum = arr.reduce((val, acc) => Number(val) + Number(acc));
-    console.log(sum / arr.length);
+    return sum / arr.length;
 }
 
 //If you place a set of numbers in order, the median number is the middle one. If there are two middle numbers, the median is the mean of those two numbers.
 function median(qString) {
     const arr = qString.split(",");
+    arr = arr.map((val) => Number(val));
+    arr.sort((a, b) = a - b));
     let midIndex = arr.length / 2;
     let left, right;
     if (Number.isInteger(midIndex)) {
         right = midIndex;
         left = midIndex - 1;
-        console.log((Number(arr[left]) + Number(arr[right])) / 2);
+        return (arr[left] + arr[right]) / 2;
     } else {
-        console.log(Number(arr[Math.floor(midIndex)]));
+        return Number(arr[Math.floor(midIndex)]);
     }
 }
 
@@ -52,5 +54,5 @@ function mode(qString) {
             resultsArray.push(key);
         }
     }
-    console.log(resultsArray);
+    return resultsArray;
 }
