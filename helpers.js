@@ -56,4 +56,4 @@ class Helper {
         return resultsArray;
     }
 }
-// module.exports = 
+module.exports = Helper
