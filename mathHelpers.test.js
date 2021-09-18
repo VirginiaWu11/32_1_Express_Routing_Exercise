@@ -13,6 +13,20 @@ describe("mean function", () => {
     });
 });
 
+describe("median function", () => {
+    test("median should return the middle number of a sorted array if there are an odd number of elements in the input array", () => {
+        const num = median([4, 5, 5, 6, 9]);
+        expect(num).toEqual(5);
+        const num2 = median([4, 5, 5, 6, 7, 8, 9]);
+        expect(num2).toEqual(6);
+    });
+    test("median should return a number", () => {
+        const num = median([4, 6, 10, 5]);
+        expect(num).toEqual(expect.any(Number));
+        expect(num).not.toEqual(expect.any(String));
+    });
+});
+
 describe("mode function", () => {
     test("mode should return an array of most frequent numbers shown in the input array if mode exists", () => {
         const resultArray = mode([4, 6, 10, 5, 5]);
