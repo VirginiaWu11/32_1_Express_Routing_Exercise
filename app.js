@@ -23,6 +23,21 @@ app.get("/mean", (req, res, next) => {
     return res.json({ response: { operation: "mean", value: mean } });
 });
 
+app.get("/median", (req, res, next) => {
+    const { nums } = req.query;
+    let numsArr, median;
+    try {
+        if (!nums) {
+            throw new ExpressError("Numbers are required", 400);
+        }
+        numsArr = Helper.checkIfAllNums(nums);
+        median = Helper.median(numsArr);
+    } catch (e) {
+        next(e);
+    }
+    return res.json({ response: { operation: "median", value: median } });
+});
+
 // If no other route matches, respond with a 404
 app.use((req, res, next) => {
     const e = new ExpressError("Page Not Found", 404);
