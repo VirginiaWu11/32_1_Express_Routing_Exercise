@@ -14,11 +14,17 @@ describe("mean function", () => {
 });
 
 describe("median function", () => {
-    test("median should return the middle number of a sorted array if there are an odd number of elements in the input array", () => {
+    test("median should return the middle number of a sorted array if there is an odd number of elements in the input array", () => {
         const num = median([4, 5, 5, 6, 9]);
         expect(num).toEqual(5);
         const num2 = median([4, 5, 5, 6, 7, 8, 9]);
         expect(num2).toEqual(6);
+    });
+    test("median should return the average of the two middle numbers of a sorted array if there is an even number of elements in the input array", () => {
+        const num = median([4, 5, 5, 6, 9, 10]);
+        expect(num).toEqual(5.5);
+        const num2 = median([4, 5, 5, 6, 7, 8, 9, 10]);
+        expect(num2).toEqual(6.5);
     });
     test("median should return a number", () => {
         const num = median([4, 6, 10, 5]);
