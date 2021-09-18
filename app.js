@@ -8,13 +8,13 @@ const app = express();
 // mode (most frequent)
 
 function mean(qString) {
-    let arr = qString.split(",");
+    const arr = qString.split(",");
     let sum = arr.reduce((val, acc) => Number(val) + Number(acc));
     console.log(sum / arr.length);
 }
 
 function median(qString) {
-    let arr = qString.split(",");
+    const arr = qString.split(",");
     let midIndex = arr.length / 2;
     let left, right;
     if (Number.isInteger(midIndex)) {
@@ -55,9 +55,3 @@ function mode(qString) {
     }
     console.log(resultsArray);
 }
-
-// first check what the max is count
-// then check if all values = the max
-// if not, then return all keys which have the max
-
-// update const for arrays and maps
