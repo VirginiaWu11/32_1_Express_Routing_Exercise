@@ -12,7 +12,7 @@ app.get("/mean", (req, res, next) => {
     const { nums } = req.query;
     let numsArr, mean;
     try {
-        if (Object.keys(req.query).length === 0) {
+        if (!nums) {
             throw new ExpressError("Numbers are required", 400);
         }
         numsArr = Helper.checkIfAllNums(nums);
