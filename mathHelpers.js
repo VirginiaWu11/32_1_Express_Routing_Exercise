@@ -1,5 +1,4 @@
 //Helper functions
-const ExpressError = require("./expressError");
 
 class MathHelpers {
     // constructor(queryString){

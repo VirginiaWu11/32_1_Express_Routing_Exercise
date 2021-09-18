@@ -1,3 +1,5 @@
+const ExpressError = require("./expressError");
+
 class CheckArrayValidity {
     static checkIfAllNumsAndReturnNumsArray(qStringNums) {
         const stringsArr = qStringNums.split(",");

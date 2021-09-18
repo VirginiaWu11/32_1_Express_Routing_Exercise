@@ -1,7 +1,7 @@
 const express = require("express");
 const ExpressError = require("./expressError");
 const MathHelpers = require("./mathHelpers");
-const checkIfAllNums = require("./checkNumsHelpers");
+const CheckArrayValidity = require("./checkNumsHelpers");
 
 const app = express();
 
@@ -16,7 +16,7 @@ app.get("/mean", (req, res, next) => {
         if (!nums) {
             throw new ExpressError("Numbers are required", 400);
         }
-        numsArr = checkIfAllNums.checkIfAllNums(nums);
+        numsArr = CheckArrayValidity.checkIfAllNumsAndReturnNumsArray(nums);
         mean = MathHelpers.mean(numsArr);
     } catch (e) {
         next(e);
@@ -31,7 +31,7 @@ app.get("/median", (req, res, next) => {
         if (!nums) {
             throw new ExpressError("Numbers are required", 400);
         }
-        numsArr = checkIfAllNums.checkIfAllNums(nums);
+        numsArr = CheckArrayValidity.checkIfAllNumsAndReturnNumsArray(nums);
         median = MathHelpers.median(numsArr);
     } catch (e) {
         next(e);
@@ -39,20 +39,21 @@ app.get("/median", (req, res, next) => {
     return res.json({ response: { operation: "median", value: median } });
 });
 
-// app.get("/mode", (req, res, next) => {
-//     const { nums } = req.query;
-//     let numsArr, median;
-//     try {
-//         if (!nums) {
-//             throw new ExpressError("Numbers are required", 400);
-//         }
-//         numsArr = checkIfAllNums.checkIfAllNums(nums);
-//         median = MathHelpers.median(numsArr);
-//     } catch (e) {
-//         next(e);
-//     }
-//     return res.json({ response: { operation: "median", value: median } });
-// });
+app.get("/mode", (req, res, next) => {
+    const { nums } = req.query;
+    let numsArr, mode;
+    try {
+        if (!nums) {
+            throw new ExpressError("Numbers are required", 400);
+        }
+        numsArr = CheckArrayValidity.checkIfAllNumsAndReturnNumsArray(nums);
+        mode = MathHelpers.mode(numsArr);
+    } catch (e) {
+        next(e);
+    }
+    console.log(mode);
+    return res.json({ response: { operation: "mode", value: mode } });
+});
 
 // If no other route matches, respond with a 404
 app.use((req, res, next) => {
