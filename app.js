@@ -1,6 +1,7 @@
 const express = require("express");
 const ExpressError = require("./expressError");
-const Helper = require("./helpers");
+const MathHelpers = require("./mathHelpers");
+const checkIfAllNums = require("./checkNumsHelpers");
 
 const app = express();
 
@@ -15,8 +16,8 @@ app.get("/mean", (req, res, next) => {
         if (!nums) {
             throw new ExpressError("Numbers are required", 400);
         }
-        numsArr = Helper.checkIfAllNums(nums);
-        mean = Helper.mean(numsArr);
+        numsArr = checkIfAllNums.checkIfAllNums(nums);
+        mean = MathHelpers.mean(numsArr);
     } catch (e) {
         next(e);
     }
@@ -30,22 +31,33 @@ app.get("/median", (req, res, next) => {
         if (!nums) {
             throw new ExpressError("Numbers are required", 400);
         }
-        numsArr = Helper.checkIfAllNums(nums);
-        median = Helper.median(numsArr);
+        numsArr = checkIfAllNums.checkIfAllNums(nums);
+        median = MathHelpers.median(numsArr);
     } catch (e) {
         next(e);
     }
     return res.json({ response: { operation: "median", value: median } });
 });
 
+// app.get("/mode", (req, res, next) => {
+//     const { nums } = req.query;
+//     let numsArr, median;
+//     try {
+//         if (!nums) {
+//             throw new ExpressError("Numbers are required", 400);
+//         }
+//         numsArr = checkIfAllNums.checkIfAllNums(nums);
+//         median = MathHelpers.median(numsArr);
+//     } catch (e) {
+//         next(e);
+//     }
+//     return res.json({ response: { operation: "median", value: median } });
+// });
+
 // If no other route matches, respond with a 404
 app.use((req, res, next) => {
     const e = new ExpressError("Page Not Found", 404);
     next(e);
-});
-
-app.listen(3000, () => {
-    console.log("Server running on port 3000");
 });
 
 app.use(function (err, req, res, next) {
@@ -57,6 +69,10 @@ app.use(function (err, req, res, next) {
     return res.status(status).json({
         error: { message, status },
     });
+});
+
+app.listen(3000, () => {
+    console.log("Server running on port 3000");
 });
 
 //TODO: figure out if the input is all numbers,

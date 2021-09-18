@@ -1,7 +1,7 @@
 //Helper functions
 const ExpressError = require("./expressError");
 
-class Helper {
+class MathHelpers {
     // constructor(queryString){
     //     const stringArr = qString.split(",")
     //     this.numsArr = stringArr.map((val) => Number(val))
@@ -57,18 +57,6 @@ class Helper {
         }
         return resultsArray;
     }
-    static checkIfAllNums(qStringNums) {
-        const stringsArr = qStringNums.split(",");
-        // const numsArr = stringsArr.map((val) => parseInt(val));
-        const numsArr = [];
-        for (let numStr of stringsArr) {
-            if (Number.isNaN(parseInt(numStr))) {
-                throw new ExpressError(`${numStr} is not a number`, 400);
-            } else {
-                numsArr.push(parseInt(numStr));
-            }
-        }
-        return numsArr;
-    }
 }
-module.exports = Helper;
+
+module.exports = MathHelpers;
