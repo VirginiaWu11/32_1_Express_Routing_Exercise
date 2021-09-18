@@ -1,10 +1,6 @@
 //Helper functions
 
 class MathHelpers {
-    // constructor(queryString){
-    //     const stringArr = qString.split(",")
-    //     this.numsArr = stringArr.map((val) => Number(val))
-    // }
     //The mean is the most commonly used measure of average. To calculate the mean, add the values together and divide the total by the number of values.
     static mean(numsArr) {
         let sum = numsArr.reduce((val, acc) => val + acc);

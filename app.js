@@ -75,10 +75,3 @@ app.use(function (err, req, res, next) {
 app.listen(3000, () => {
     console.log("Server running on port 3000");
 });
-
-//TODO: figure out if the input is all numbers,
-//  if not, handle error
-
-// need three routes /mean, /median, /mode, all GET requests
-
-// who waht when where why, how?
