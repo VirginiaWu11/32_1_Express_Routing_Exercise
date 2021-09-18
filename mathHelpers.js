@@ -28,13 +28,11 @@ class MathHelpers {
     }
 
     //The mode is the value that occurs most often. The mode is the only average that can have no value, one value or more than one value.
-    static mode(qString) {
-        const arr = qString.split(",");
+    static mode(numsArr) {
         const newMap = new Map();
         const resultsArray = [];
-        // let mostFreq = "";
         let maxCount = 0;
-        for (let numStr of arr) {
+        for (let numStr of numsArr) {
             if (newMap.has(numStr)) {
                 newMap.set(numStr, newMap.get(numStr) + 1);
             } else {
@@ -42,7 +40,6 @@ class MathHelpers {
             }
             if (newMap.get(numStr) > maxCount) {
                 maxCount = newMap.get(numStr);
-                // mostFreq = numStr;
             }
         }
         const valuesArray = [...newMap.values()];
