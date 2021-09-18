@@ -55,6 +55,26 @@ app.get("/mode", (req, res, next) => {
     return res.json({ response: { operation: "mode", value: mode } });
 });
 
+app.get("/all", (req, res, next) => {
+    const { nums } = req.query;
+    let numsArr, mean, median, mode;
+    try {
+        if (!nums) {
+            throw new ExpressError("Numbers are required", 400);
+        }
+        numsArr = CheckArrayValidity.checkIfAllNumsAndReturnNumsArray(nums);
+        mean = MathHelpers.mean(numsArr);
+        median = MathHelpers.median(numsArr);
+        mode = MathHelpers.mode(numsArr);
+    } catch (e) {
+        next(e);
+    }
+    console.log(mode);
+    return res.json({
+        response: { operation: "all", mean: mean, median: median, mode: mode },
+    });
+});
+
 // If no other route matches, respond with a 404
 app.use((req, res, next) => {
     const e = new ExpressError("Page Not Found", 404);
