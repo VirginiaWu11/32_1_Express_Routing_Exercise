@@ -3,16 +3,14 @@ const ExpressError = require("./expressError");
 
 const app = express();
 
-// mean (average)
-// median (midpoint)
-// mode (most frequent)
-
+//The mean is the most commonly used measure of average. To calculate the mean, add the values together and divide the total by the number of values.
 function mean(qString) {
     const arr = qString.split(",");
     let sum = arr.reduce((val, acc) => Number(val) + Number(acc));
     console.log(sum / arr.length);
 }
 
+//If you place a set of numbers in order, the median number is the middle one. If there are two middle numbers, the median is the mean of those two numbers.
 function median(qString) {
     const arr = qString.split(",");
     let midIndex = arr.length / 2;
@@ -26,6 +24,7 @@ function median(qString) {
     }
 }
 
+//The mode is the value that occurs most often. The mode is the only average that can have no value, one value or more than one value.
 function mode(qString) {
     const arr = qString.split(",");
     const newMap = new Map();
