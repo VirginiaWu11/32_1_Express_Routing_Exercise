@@ -14,18 +14,16 @@ class Helper {
     }
 
     //If you place a set of numbers in order, the median number is the middle one. If there are two middle numbers, the median is the mean of those two numbers.
-    static median(qString) {
-        const arr = qString.split(",");
-        arr = arr.map((val) => Number(val));
-        arr.sort((a, b) => a - b);
-        let midIndex = arr.length / 2;
+    static median(numsArr) {
+        numsArr.sort((a, b) => a - b);
+        let midIndex = numsArr.length / 2;
         let left, right;
         if (Number.isInteger(midIndex)) {
             right = midIndex;
             left = midIndex - 1;
-            return (arr[left] + arr[right]) / 2;
+            return (numsArr[left] + numsArr[right]) / 2;
         } else {
-            return Number(arr[Math.floor(midIndex)]);
+            return Number(numsArr[Math.floor(midIndex)]);
         }
     }
 
