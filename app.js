@@ -26,9 +26,21 @@ function median(qString) {
     }
 }
 
-// 5,5,5,6,6
-// 0 1 2 3 4 5
-
-// 5/2 = 2.5
-
-// 6/2 = 3
+function mode(qString) {
+    let arr = qString.split(",");
+    let newMap = new Map();
+    let mostFreq = "";
+    let max = 0;
+    for (let numStr of arr) {
+        if (newMap.has(numStr)) {
+            newMap.set(numStr, newMap.get(numStr) + 1);
+        } else {
+            newMap.set(numStr, 1);
+        }
+        if (newMap.get(numStr) > max) {
+            max = newMap.get(numStr);
+            mostFreq = numStr;
+        }
+    }
+    console.log(Number(mostFreq));
+}
